@@ -6,6 +6,7 @@
     size="medium"
     status="primary"
     class="add-track-button"
+    title="Add Track"
   >
     <fa-icon [icon]="faPlusCircle"></fa-icon>
     &nbsp; Add Track
@@ -52,16 +53,29 @@
               nbButton
               size="tiny"
               status="primary"
+              title="Add New Sessiom"
             >
               <nb-icon icon="plus"></nb-icon>
               Add New Session
             </button>
             &nbsp;
-            <button (click)="showEditTrackForm(elt); $event.stopPropagation()" nbButton size="tiny" status="info">
+            <button
+              (click)="showEditTrackForm(elt); $event.stopPropagation()"
+              nbButton
+              size="tiny"
+              status="info"
+              title="Edit Track"
+            >
               <nb-icon icon="edit-outline"></nb-icon>
             </button>
             &nbsp;
-            <button (click)="confirmDeleteTrack(elt); $event.stopPropagation()" nbButton size="tiny" status="danger">
+            <button
+              (click)="confirmDeleteTrack(elt); $event.stopPropagation()"
+              nbButton
+              size="tiny"
+              status="danger"
+              title="Delete Track"
+            >
               <nb-icon icon="trash-outline"></nb-icon>
             </button>
           </div>
@@ -73,6 +87,7 @@
               showAddSlotForm(event.id, event.start_time, elt, eventLocationDate, elti); $event.stopPropagation()
             "
             *ngIf="event.editable"
+            title="Add New Sessiom"
           >
             <fa-icon [icon]="faPlus"></fa-icon>
             &nbsp; Add New Session
@@ -105,6 +120,7 @@
                             [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
                             [routerLink]="['/speaker-resource-form']"
                             class="add-session"
+                            title="Edit Track"
                             target="_blank"
                           >
                             <fa-icon [icon]="faPaperclip"></fa-icon>

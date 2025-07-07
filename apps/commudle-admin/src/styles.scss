@@ -27,10 +27,6 @@ fa-icon svg {
   font-size: inherit;
   height: 1em;
 }
-fa-icon.clickable {
-  cursor: default !important;
-  pointer-events: none !important;
-}
 
 .validation-error-text,
 .error-text {
@@ -47,6 +43,10 @@ input {
 
 .timepicker-backdrop-overlay {
   z-index: 1100 !important;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .navigation-link {
