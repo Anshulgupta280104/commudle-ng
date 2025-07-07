@@ -85,13 +85,20 @@
     <commudle-next-step-card
       [nbIcon]="'pricetags-outline'"
       headingText="Add Collaborations & Teammates"
-      subHeadingText="Collaborate with communities, add teammates & volunteers"
-      buttonText="add now"
+      nbTooltip="Add Collaborations & Teammates"
+      nbTooltipStatus="primary"
+      nbTooltipPlacement="top"
+    >
+      subHeadingText="Collaborate with communities, add teammates & volunteers" buttonText="add now"
       [routerLink]="'/admin' + '/communities/' + community.slug + '/event-dashboard/' + event.slug + '/collaborations'"
-    ></commudle-next-step-card>
+      ></commudle-next-step-card
+    >
     <commudle-next-step-card
       [nbIcon]="'briefcase-outline'"
       headingText="Add Sponsors"
+      nbTooltip="Add Sponsors"
+      nbTooltipStatus="primary"
+      nbTooltipPlacement="top"
       subHeadingText="Add your event sponsors and give the due credits"
       buttonText="add now"
       [routerLink]="'/admin' + '/communities/' + community.slug + '/event-dashboard/' + event.slug + '/sponsors'"

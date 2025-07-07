@@ -1,9 +1,7 @@
 .upcoming {
-  color: white;
-  background: #ff4343;
-  width: fit-content;
-  padding: 3px;
-  margin: 0;
-  /* border-radius: 10px; */
-  font-size: 0.8rem;
+  @apply com-bg-[#ff4343] com-text-white com-text-sm com-font-medium com-rounded-md;
+  margin: 0 16px 0 0;
+  padding: 6px 12px;
+  text-align: center;
+  display: inline-block;
 }
