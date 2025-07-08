@@ -4,7 +4,7 @@
       <div class="filter">
         <label for="members">Filter Emails By:</label>
         <select name="members" formControlName="members" (change)="toggleEventSpecificEmail($any($event.target).value)">
-          <option value="" disabled title="General Email (To All or a Specific Member)">Filter Emails</option>
+          <option [value]="EemailTypes.GENERAL_ALL">General Email (To All or a Specific Member)</option>
           <option selected value="{{ EemailTypes.GENERAL_ALL }}" title="General Email (To All or a Specific Member)">
             General Email (To All or a Specific Member)
             <commudle-help-section [helpDictionaryName]="'community-general-email'"></commudle-help-section>

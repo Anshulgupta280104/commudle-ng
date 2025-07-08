@@ -1,7 +1,8 @@
 .upcoming {
-  @apply com-bg-[#ff4343] com-text-white com-text-sm com-font-medium com-rounded-md;
-  margin: 0 16px 0 0;
-  padding: 6px 12px;
-  text-align: center;
+  @apply com-bg-red-500 com-text-white com-text-sm com-font-medium com-rounded-md;
+  width: fit-content;
+  padding: 3px;
+  margin: 0;
+  font-size: 0.8rem;
   display: inline-block;
 }
