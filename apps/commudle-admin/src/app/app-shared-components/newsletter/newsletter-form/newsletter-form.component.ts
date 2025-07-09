@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NewsletterService } from 'apps/commudle-admin/src/app/services/newsletter.service';
@@ -10,20 +10,22 @@ import { faChevronLeft, faFileImage } from '@fortawesome/free-solid-svg-icons';
 import grapesjs from 'grapesjs';
 import plugin from 'grapesjs-preset-newsletter';
 import { NbDialogService } from '@commudle/theme';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'commudle-newsletter-form',
+  selector: 'app-newsletter-form',
   templateUrl: './newsletter-form.component.html',
   styleUrls: ['./newsletter-form.component.scss'],
 })
 export class NewsletterFormComponent implements OnInit, AfterViewInit {
-  newsletterForm: FormGroup;
-  parentId: string;
-  parentType: string;
-  pageSlug: string;
+  @Input() parentId: string | number;
+  @Input() parentType: 'CommunityGroup' | 'Kommunity';
   subscriptions: Subscription[] = [];
+  newsletterForm: FormGroup;
+  pageSlug: string;
   imagePreview;
   testEmailsForms: FormGroup;
+  newsletter!: INewsletter;
 
   icons = {
     faChevronLeft,
@@ -72,6 +74,18 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
     license_key: 'gpl',
   };
 
+  redirectTo(slug) {
+    let redirectUrl = '';
+    if (this.parentType === 'Kommunity') {
+      redirectUrl = '/communities/' + this.parentId + '/newsletters/' + slug;
+    }
+    if (this.parentType === 'CommunityGroup') {
+      redirectUrl = '/orgs/' + this.parentId + '/newsletters/' + slug;
+    }
+    const url = this.router.serializeUrl(this.router.createUrlTree([redirectUrl]));
+    window.open(url, '_blank');
+  }
+
   constructor(
     private newsletterService: NewsletterService,
     private fb: FormBuilder,
@@ -79,6 +93,7 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
     private location: Location,
     private toastrService: ToastrService,
     private dialogService: NbDialogService,
+    private router: Router,
   ) {
     this.newsletterForm = this.fb.group({
       title: ['', Validators.required],
@@ -138,6 +153,8 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
     this.subscriptions.push(
       this.newsletterService.getShow(this.pageSlug).subscribe((data: INewsletter) => {
         if (data) {
+          this.newsletter = data;
+
           this.newsletterForm.patchValue({
             title: data.title,
             email_subject: data.email_subject,
@@ -188,7 +205,7 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
     });
   }
 
-  createOrUpdate(sendTestEmail: boolean = false) {
+  createOrUpdate(sendTestEmail = false) {
     if (this.newsletterForm.controls['grapes_js_editor'].value) {
       this.replaceImgSrc(this.editor.getHtml())
         .then((modifiedHtmlContent) => {

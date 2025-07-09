@@ -146,6 +146,9 @@
       >
         Save & Send Test Emails
       </button>
+      <button nbButton status="primary" *ngIf="newsletter?.slug" (click)="redirectTo(newsletter.slug)">
+        Preview Newsletter
+      </button>
     </div>
     <div class="back-button" (click)="backPage()">
       <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon> Back to list of newsletter
