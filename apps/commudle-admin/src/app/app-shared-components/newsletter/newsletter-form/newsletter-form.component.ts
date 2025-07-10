@@ -99,7 +99,7 @@ export class NewsletterFormComponent implements OnInit, AfterViewInit {
       title: ['', Validators.required],
       email_subject: ['', Validators.required],
       published: [true],
-      brief_description: ['', [Validators.required, Validators.maxLength(50)]],
+      brief_description: ['', [Validators.required, Validators.maxLength(200)]],
       content: [''],
       banner_image: [null],
       grapes_js_editor: [true, Validators.required],
