@@ -3,8 +3,8 @@
     <div *ngIf="showEmailFilters" class="filters">
       <div class="filter">
         <select name="members" formControlName="members" (change)="toggleEventSpecificEmail($any($event.target).value)">
-          <option value="" disabled>Filter Emails</option>
-          <option selected value="{{ EemailTypes.GENERAL_ALL }}">
+          <option value="" disabled title="General Email (To All or a Specific Member)">Filter Emails</option>
+          <option selected value="{{ EemailTypes.GENERAL_ALL }}" title="General Email (To All or a Specific Member)">
             General Email (To All or a Specific Member)
             <commudle-help-section [helpDictionaryName]="'community-general-email'"></commudle-help-section>
           </option>
@@ -17,6 +17,9 @@
       </div>
 
       <div *ngIf="isEventSpecificEmail" class="filters">
+        <div class="filter">
+          <label>Filter Emails By 2:</label>
+        </div>
         <select (change)="getEventDataFormEntityGroups($any($event.target).value)" formControlName="event_id">
           <option value="null" selected disabled>Select Event</option>
           <option *ngFor="let event of events" [value]="event.id">
@@ -26,7 +29,8 @@
 
         <div class="form-mail-type-selection filters">
           <div *ngIf="eventDataFormEntityGroups.length > 0" class="filter">
-            <select
+            <label> Select Form </label
+            ><select
               (change)="toggleEventDataFormEntityGroupType($any($event.target).value)"
               formControlName="event_data_form_entity_group_id"
               name="event_data_form_entity_group_id"
@@ -42,7 +46,8 @@
           </div>
 
           <div *ngIf="selectedEventDataFormEntityGroup || eventSimpleRegistration" class="filter">
-            <select
+            <label> Send Email </label
+            ><select
               *ngIf="selectedEventDataFormEntityGroup && selectedFormRegistrationType.length > 0"
               (change)="toggleEmailBodyValidation($any($event.target).value)"
               formControlName="registration_selection_type"

@@ -1,7 +1,10 @@
 section {
   @apply com-w-full com-bg-white com-min-h-screen com-flex;
+  .toggle {
+    @apply com-absolute com-top-2 com-right-2 com-z-50 com-cursor-pointer;
+  }
   .sidebar {
-    @apply com-sticky com-top-16 com-h-[calc(100vh-70px)];
+    @apply com-sticky com-top-20 com-h-screen;
     a {
       @apply com-text-inherit com-no-underline;
     }
@@ -52,7 +55,7 @@ section {
   }
 
   .right-section {
-    @apply com-w-[calc(100%-320px)] com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+    @apply com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
     .header {
       @apply com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-px-6 com-py-4;
       .step-one {

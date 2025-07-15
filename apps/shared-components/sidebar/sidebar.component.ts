@@ -18,7 +18,7 @@ import { ESidebarPosition, ESidebarWidth } from './enum/sidebar.enum';
 export class SidebarComponent implements OnInit, OnDestroy {
   @ViewChild('sidebarElement') sidebarElement!: ElementRef;
   @Input() isExpanded: boolean = false;
-  @Input() showExpandedButton: boolean = true;
+  @Input() showExpandedButton: boolean = false;
   @Input() position: ESidebarPosition = ESidebarPosition.LEFT;
   @Input() expandedWidth: ESidebarWidth = ESidebarWidth.LARGE;
   @Input() heading: string;
@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   ESidebarPosition = ESidebarPosition;
   ESidebarWidth = ESidebarWidth;
-  hideFullSidebar = false;
+  hideFullSidebar = true;
   expandSidebar = false;
 
   private destroy$ = new Subject<void>();
@@ -80,7 +80,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   handleSidebarToggle() {
     this.sidebarService.toggleSidebarVisibility(this.eventName);
-    this.toggleSidebar.emit(!this.isExpanded);
+    this.isExpanded = !this.isExpanded;
+    this.toggleSidebar.emit(this.isExpanded);
   }
 
   private onDocumentClick(event: MouseEvent): void {
